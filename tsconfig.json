@@ -1,0 +1,19 @@
+{
+  "name": "advent-of-code-typescript",
+  "version": "1.0.0",
+  "description": "Advent of Code 2023 Repo for Joscco",
+  "main": "index.ts",
+  "author": "Joscco",
+  "compilerOptions": {
+    // DO NOT EDIT
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "module": "CommonJS",
+    "target": "ES2015",
+    "outDir": "./dist",
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "strict": true,
+    "typeRoots": ["./node_modules/@types", "./src/types"]
+  },
+}
