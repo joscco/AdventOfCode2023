@@ -1,15 +1,17 @@
-export abstract class AbstractSolution {
-    input: string
-    exampleInput: string
+import {Str} from "./Str";
 
-    constructor(input: string, exampleInput: string) {
+export abstract class AbstractSolution {
+    input: Str
+    exampleInput: Str
+
+    constructor(input: Str, exampleInput: Str) {
         this.input = input
         this.exampleInput = exampleInput
     }
 
-    abstract solveFirst(input: string, testMode?: boolean): string
+    abstract solveFirst(input: Str, testMode?: boolean): string
 
-    abstract solveSecond(input: string, testMode?: boolean): string
+    abstract solveSecond(input: Str, testMode?: boolean): string
 
     abstract getFirstExampleSolution(): string
 

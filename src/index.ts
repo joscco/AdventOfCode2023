@@ -1,6 +1,4 @@
 import SolutionManager from "./SolutionManager";
-import "./types/Array"
-import "./types/String"
 
 const args = process.argv.slice(2);
 const dayNumber = args[0];

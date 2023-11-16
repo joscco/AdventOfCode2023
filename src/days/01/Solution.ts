@@ -1,4 +1,5 @@
 import {AbstractSolution} from "../../types/AbstractSolution";
+import {Str} from "../../types/Str";
 
 export class Solution extends AbstractSolution {
     getFirstExampleSolution(): string {
@@ -9,12 +10,12 @@ export class Solution extends AbstractSolution {
         return "";
     }
 
-    solveFirst(input: string): string {
+    solveFirst(input: Str): string {
         let defaultResult = "";
         return `${defaultResult}`;
     }
 
-    solveSecond(input: string): string {
+    solveSecond(input: Str): string {
         return ""
     }
 
