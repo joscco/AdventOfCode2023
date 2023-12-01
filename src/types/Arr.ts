@@ -51,8 +51,7 @@ export class Arr<T> {
     }
 
     getMultiple(indices: number[]): Arr<T> {
-        let indicesAsNumArr = new NumArr(indices)
-        return new Arr(this.elements.filter((val, i) => indicesAsNumArr.contains(i)))
+        return new Arr(indices.map(index => this.elements[index]));
     }
 
     getFirstThat(condition: (element: T) => boolean): T | undefined {

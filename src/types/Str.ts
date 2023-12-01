@@ -1,6 +1,6 @@
 import {Arr, NumArr} from "./Arr";
 
-export class Str {
+export class Str{
 
     private value: string
 
@@ -82,5 +82,13 @@ export class Str {
             return a.value === b.value
         }
         return false
+    }
+
+    match(regex: RegExp): Arr<Str>  {
+        return new Arr(this.value.match(regex)?.map(val => new Str(val)))
+    }
+
+    static concat(str: Str, str2: Str) {
+        return new Str(str.toString() + str2.toString());
     }
 }

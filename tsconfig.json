@@ -6,6 +6,9 @@
   "author": "Joscco",
   "compilerOptions": {
     // DO NOT EDIT
+    "lib": [
+      "ES2021.String"
+    ],
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
     "module": "CommonJS",

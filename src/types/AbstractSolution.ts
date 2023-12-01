@@ -3,10 +3,12 @@ import {Str} from "./Str";
 export abstract class AbstractSolution {
     input: Str
     exampleInput: Str
+    exampleInput2: Str
 
-    constructor(input: Str, exampleInput: Str) {
+    constructor(input: Str, exampleInput: Str, exampleInput2: Str) {
         this.input = input
         this.exampleInput = exampleInput
+        this.exampleInput2 = exampleInput2
     }
 
     abstract solveFirst(input: Str, testMode?: boolean): string
@@ -34,7 +36,7 @@ export abstract class AbstractSolution {
 
         console.log(`\nSecond Puzzle:`)
         let secondExampleSolution = this.getSecondExampleSolution()
-        let mySecondExampleSolution = this.solveSecond(this.exampleInput, true)
+        let mySecondExampleSolution = this.solveSecond(this.exampleInput2, true)
         console.log(`Example Solution | My Solution: ${secondExampleSolution} | ${mySecondExampleSolution}`,
             "<--",
             secondExampleSolution === mySecondExampleSolution ? "Correct! ✅" : "Wrong! ❌")
