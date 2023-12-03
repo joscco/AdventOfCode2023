@@ -77,6 +77,11 @@ export class Str{
         return parseInt(this.value)
     }
 
+    concat(val: Str): Str {
+        this.value = Str.concat(this, val).value
+        return this
+    }
+
     static equals<T>(a: T, b: T) {
         if (a instanceof Str && b instanceof Str) {
             return a.value === b.value
@@ -84,11 +89,15 @@ export class Str{
         return false
     }
 
-    match(regex: RegExp): Arr<Str>  {
-        return new Arr(this.value.match(regex)?.map(val => new Str(val)))
+    match(regex: RegExp): RegExpMatchArray | null {
+        return this.value.match(regex)
     }
 
     static concat(str: Str, str2: Str) {
-        return new Str(str.toString() + str2.toString());
+        return new Str(str.value + str2.value);
+    }
+
+    matchAll(regExp: RegExp): Array<RegExpMatchArray> {
+        return Array.from(this.value.matchAll(regExp))
     }
 }

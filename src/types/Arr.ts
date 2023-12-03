@@ -17,7 +17,12 @@ export class Arr<T> {
         return this;
     }
 
-    map<U>(callback: (value: T) => U): Arr<U> {
+    pushArr(arr: Arr<T>): Arr<T> {
+        this.elements.push(...arr.elements)
+        return this;
+    }
+
+    map<U>(callback: (value: T, index: number) => U): Arr<U> {
         return new Arr(this.elements.map(callback))
     }
 
@@ -69,6 +74,16 @@ export class Arr<T> {
 
     last(): T {
         return this.get(this.length() - 1)
+    }
+
+    getIndicesWith(lambda: (val: T) => boolean): NumArr {
+        let result = []
+        for (let i = 0; i < this.length(); i++) {
+            if (lambda(this.elements[i])) {
+                result.push(i)
+            }
+        }
+        return new NumArr(result)
     }
 
     groupSplit(separator: T): Arr2D<T> {
@@ -178,6 +193,28 @@ export class Arr<T> {
     slice(from?: number, to?: number): Arr<T> {
         return new Arr(this.elements.slice(from, to))
     }
+
+    zip<V>(other: Arr<V>): Arr<[T, V]> {
+        return this.zip(other)
+    }
+
+    static zip<T, V>(a: Arr<T>, b: Arr<V>): Arr<[T, V]> {
+        let result = new Arr<[T, V]>()
+        for (let i = 0; i < Math.max(a.length(), b.length()); i++) {
+            result.push([a.get(i % a.length()), b.get(i % b.length())])
+        }
+        return result
+    }
+
+    some(param: (other: T) => boolean): boolean {
+        return this.elements.some(param)
+    }
+
+    flatMap<V>(param: (val: T, index: number) => Arr<V>): Arr<V> {
+        let result = new Arr<V>()
+        this.elements.map(param).forEach(val => result.pushArr(val))
+        return result
+    }
 }
 
 export class NumArr extends Arr<number> {
@@ -192,6 +229,18 @@ export class NumArr extends Arr<number> {
 
     multiply(): number {
         return this.elements.reduce((a, b) => a * b, 1)
+    }
+
+    static interval(from: number, to: number): NumArr {
+        if (from > to) {
+            return NumArr.interval(to, from)
+        }
+
+        let result = new NumArr()
+        for (let i = from; i <= to; i++) {
+            result.push(i)
+        }
+        return result
     }
 }
 

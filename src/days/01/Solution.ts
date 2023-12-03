@@ -1,5 +1,6 @@
 import {AbstractSolution} from "../../types/AbstractSolution";
 import {Str} from "../../types/Str";
+import {Arr} from "../../types/Arr";
 
 const DIGIT_MAP: Map<string, string> = new Map([
     ["one", "1"],
@@ -28,6 +29,7 @@ export class Solution extends AbstractSolution {
     solveFirst(input: Str): string {
         return input.parseRows()
             .map(row => row.match(PURE_DIGIT_REGEX))
+            .map(matches => new Arr(matches?.map(val => new Str(val))))
             .map(matches => Str.concat(matches.first(), matches.last()).parseInt())
             .toNumArr()
             .add()
@@ -37,6 +39,7 @@ export class Solution extends AbstractSolution {
     solveSecond(input: Str): string {
         return input.parseRows()
             .map(row => row.match(DIGIT_REGEX))
+            .map(matches => new Arr(matches?.map(val => new Str(val))))
             .map(matches => matches.map(match => this.replaceDigit(match.toString())))
             .map(matches => Str.concat(matches.first(), matches.last()).parseInt())
             .toNumArr()
