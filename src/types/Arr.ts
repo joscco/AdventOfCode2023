@@ -86,6 +86,16 @@ export class Arr<T> {
         return new NumArr(result)
     }
 
+    getElementsWith(lambda: (val: T, index: number) => boolean): Arr<T> {
+        let result = []
+        for (let i = 0; i < this.length(); i++) {
+            if (lambda(this.elements[i], i)) {
+                result.push(this.elements[i])
+            }
+        }
+        return new Arr<T>(result)
+    }
+
     groupSplit(separator: T): Arr2D<T> {
         let groups: Arr2D<T> = new Arr2D<T>();
         let currentGroup: Arr<T> = new Arr<T>();

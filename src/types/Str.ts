@@ -51,7 +51,7 @@ export class Str{
         return other.value === this.value
     }
 
-    split(el: string): Arr<Str> {
+    split(el: string | RegExp): Arr<Str> {
         return new Arr(this.value.split(el).map(val => new Str(val)))
     }
 
@@ -99,5 +99,9 @@ export class Str{
 
     matchAll(regExp: RegExp): Array<RegExpMatchArray> {
         return Array.from(this.value.matchAll(regExp))
+    }
+
+    trim() {
+        return new Str(this.value.trim())
     }
 }
