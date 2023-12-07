@@ -143,6 +143,10 @@ export class Arr<T> {
         return this.elements;
     }
 
+    sort(compare?: ((a: T, b: T) => number) | undefined): Arr<T> {
+        return new Arr(this.elements.sort(compare))
+    }
+
     toNumArr(): NumArr {
         if (typeof this.get(0) === 'number') {
             return new NumArr(this.elements as number[])

@@ -104,4 +104,12 @@ export class Str{
     trim() {
         return new Str(this.value.trim())
     }
+
+    charAt(number: number) {
+        return this.value.charAt(number);
+    }
+
+    dropFirstChars(number: number) {
+        return new Str(this.value.slice(number))
+    }
 }
