@@ -1,16 +1,8 @@
 import {AbstractSolution} from "../../types/AbstractSolution";
 import {Str} from "../../types/Str";
 
-export type MapInterval = {
-    start: number,
-    mappedStart: number
-    width: number,
-}
-
 const VALUES = ["A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2"]
 const VALUES_WITH_JOKER = ["A", "K", "Q", "T", "9", "8", "7", "6", "5", "4", "3", "2", "J"]
-
-// Wenn a größer b ist, dann gib positiven Wert zurück
 
 export class Solution extends AbstractSolution {
 
@@ -23,43 +15,30 @@ export class Solution extends AbstractSolution {
     }
 
     solveFirst(input: Str): string {
-        return input.parseRows()
-            .map(row => {
-                let split = row.split(" ");
-                return [split.get(0), split.get(1).parseInt()] as [Str, number]
-            })
-            .sort((a, b) => this.compareHands(a[0], b[0], VALUES, false))
-            .map(([_, rank], index) => rank * (index + 1))
-            .toNumArr()
-            .add()
-            .toString()
+        return this.solveDay(input, VALUES, false)
     }
 
     solveSecond(input: Str): string {
+        return this.solveDay(input, VALUES_WITH_JOKER, true)
+    }
+
+    private solveDay(input: Str, valueList: String[], includeJokers: boolean) {
         return input.parseRows()
             .map(row => {
                 let split = row.split(" ");
                 return [split.get(0), split.get(1).parseInt()] as [Str, number]
             })
-            .sort((a, b) => this.compareHands(a[0], b[0], VALUES_WITH_JOKER, true))
-            // .log(([str, num]) => [str, num, this.getTypeOfHand(str)])
+            .sort((a, b) => this.compareHands(a[0], b[0], valueList, includeJokers))
             .map(([_, rank], index) => rank * (index + 1))
             .toNumArr()
             .add()
-            .toString()
+            .toString();
     }
 
-    private compareHands(a: Str, b: Str, charList: String[], joker: boolean) : number {
+    private compareHands(a: Str, b: Str, charList: String[], withJokers: boolean) : number {
         // Ist a größer B, so ist der Typ von a Größer
-        let aType
-        let bType
-        if (!joker) {
-            aType = this.getTypeOfHand(a)
-            bType = this.getTypeOfHand(b)
-        } else {
-            aType = this.getHighestTypeOfHand(a)
-            bType = this.getHighestTypeOfHand(b)
-        }
+        let aType = withJokers ? this.getHighestTypeOfHand(a) : this.getTypeOfHand(a)
+        let bType = withJokers ? this.getHighestTypeOfHand(b) : this.getTypeOfHand(b)
 
         if (aType == bType) {
             return this.lexCompare(a, b, charList)
@@ -92,6 +71,7 @@ export class Solution extends AbstractSolution {
             // One Pair
             return 1
         }
+
         return 0
     }
 
@@ -132,10 +112,8 @@ export class Solution extends AbstractSolution {
         }
         return map
     }
-
-
+    
     private lexCompare(a: Str, b: Str, charList: String[]) : number {
-        // Ist a größer b, so ist index a kleiner
         let firstAValue = charList.indexOf(a.charAt(0))
         let firstBValue = charList.indexOf(b.charAt(0))
         if (firstAValue === firstBValue) {
