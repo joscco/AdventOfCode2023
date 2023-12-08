@@ -112,7 +112,7 @@ export class Solution extends AbstractSolution {
         }
         return map
     }
-    
+
     private lexCompare(a: Str, b: Str, charList: String[]) : number {
         let firstAValue = charList.indexOf(a.charAt(0))
         let firstBValue = charList.indexOf(b.charAt(0))

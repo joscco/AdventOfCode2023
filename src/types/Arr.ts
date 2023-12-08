@@ -26,7 +26,7 @@ export class Arr<T> {
         return new Arr(this.elements.map(callback))
     }
 
-    filter(callback: (value: T) => boolean): Arr<T> {
+    filter(callback: (value: T, index: number) => boolean): Arr<T> {
         return new Arr(this.elements.filter(callback))
     }
 
@@ -206,10 +206,6 @@ export class Arr<T> {
 
     slice(from?: number, to?: number): Arr<T> {
         return new Arr(this.elements.slice(from, to))
-    }
-
-    zip<V>(other: Arr<V>): Arr<[T, V]> {
-        return this.zip(other)
     }
 
     static zip<T, V>(a: Arr<T>, b: Arr<V>): Arr<[T, V]> {
