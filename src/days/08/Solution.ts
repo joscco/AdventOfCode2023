@@ -1,6 +1,7 @@
 import {AbstractSolution} from "../../types/AbstractSolution";
 import {Str} from "../../types/Str";
 import {Arr} from "../../types/Arr";
+import {range_lcm} from "../../types/MathUtils";
 
 export class Solution extends AbstractSolution {
 
@@ -26,9 +27,9 @@ export class Solution extends AbstractSolution {
         let periods = new Arr([...dict.keys()])
             .filter(key => key.charAt(2) === "A")
             .map(starter => this.findSmallestPeriod(starter, firstRow, dict))
-            .log()
 
-        return this.range_lcm(periods.toArray()).toString()
+        console.log(firstRow.length(), periods.map(period => period % firstRow.length()))
+        return range_lcm(periods.toArray()).toString()
     }
 
     private buildDict(strArr: Arr<Str>): Map<string, [string, string]> {
@@ -70,19 +71,8 @@ export class Solution extends AbstractSolution {
             steps++
         }
 
+        console.log(visited)
+
         return steps
-    }
-
-    gcd(a: number, b: number): number {
-        return !b ? a : this.gcd(b, a % b);
-    }
-
-
-    lcm(a: number, b: number): number {
-        return a * (b / this.gcd(a, b));
-    }
-
-    range_lcm(arr: number[]): number {
-        return arr.reduce((lcm, newVal) => this.lcm(lcm, newVal), arr[0])
     }
 }

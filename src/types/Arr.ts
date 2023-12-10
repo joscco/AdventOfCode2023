@@ -1,5 +1,6 @@
 import {IDENTITY} from "./General";
 import {Str} from "./Str";
+import {Vector2} from "./Dict";
 
 export class Arr<T> {
     elements: T[]
@@ -168,6 +169,10 @@ export class Arr<T> {
         return this.max((a, b) => -sortFn(a, b))
     }
 
+    minMax(sortFn: (a: T, b: T) => number): [T, T] {
+        return [this.min(sortFn), this.max(sortFn)]
+    }
+
     maxN(n: number, sortFn: (a: T, b: T) => number): T[] {
         let sorted = Object.assign([], this).sort(sortFn)
         return sorted.slice(this.length() - n, this.length())
@@ -224,6 +229,10 @@ export class Arr<T> {
         let result = new Arr<V>()
         this.elements.map(param).forEach(val => result.pushArr(val))
         return result
+    }
+
+    all(param: (val: T, index: number) => boolean) {
+        return this.elements.every(param);
     }
 }
 
