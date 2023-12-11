@@ -264,6 +264,14 @@ export class NumArr extends Arr<number> {
 }
 
 export class Arr2D<T> extends Arr<Arr<T>> {
+    static from<U>(arr: Arr<Arr<U>>): Arr2D<U> {
+        let result: Arr2D<U> = Arr2D.empty(arr.length())
+        for (let i = 0; i < arr.length(); i++) {
+            result.set(i, arr.get(i).copy())
+        }
+        return result
+    }
+
     transpose(): Arr2D<T> {
         let result: Arr2D<T> = new Arr2D<T>()
         for (let i = 0; i < this.length(); i++) {
@@ -280,6 +288,22 @@ export class Arr2D<T> extends Arr<Arr<T>> {
 
     getFirsts(): Arr<T> {
         return this.map(el => el.get(0))
+    }
+
+    filter2D(callback: (value: T, index: Vector2) => boolean): Arr<[T, Vector2]> {
+        let result: Arr<[T, Vector2]> = new Arr();
+
+        for (let rowI = 0; rowI < this.elements.length; rowI++) {
+            for (let colI = 0; colI < this.get(rowI).length(); colI++) {
+                let el = this.get(rowI).get(colI)
+                // Column first!
+                let index = [colI, rowI] as Vector2
+                if (callback(el, [colI, rowI])) {
+                    result.push([el, index])
+                }
+            }
+        }
+        return result
     }
 
     static empty<U>(length: number): Arr2D<U> {
