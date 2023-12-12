@@ -112,4 +112,8 @@ export class Str{
     dropFirstChars(number: number) {
         return new Str(this.value.slice(number))
     }
+
+    contains(str: string): boolean {
+        return this.value.includes(str)
+    }
 }

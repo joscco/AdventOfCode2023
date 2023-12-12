@@ -23,6 +23,10 @@ export class Arr<T> {
         return this;
     }
 
+    except(el: T): Arr<T> {
+        return this.filter(val => val != el)
+    }
+
     map<U>(callback: (value: T, index: number) => U): Arr<U> {
         return new Arr(this.elements.map(callback))
     }
@@ -187,10 +191,10 @@ export class Arr<T> {
         return new Arr(result)
     }
 
-    slideWindow(width: number): T[][] {
-        let result = [];
+    slideWindow(width: number): Arr<Arr<T>> {
+        let result: Arr<Arr<T>> = new Arr();
         for (let i = width - 1; i < this.length(); i++) {
-            result.push(this.elements.slice(i - width + 1, i + 1))
+            result.push(new Arr(this.elements.slice(i - width + 1, i + 1)))
         }
         return result
     }
@@ -233,6 +237,11 @@ export class Arr<T> {
 
     all(param: (val: T, index: number) => boolean) {
         return this.elements.every(param);
+    }
+
+
+    dropFirst(n: number) {
+        return this.filter((v, i) => i >= n)
     }
 }
 

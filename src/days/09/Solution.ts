@@ -34,7 +34,7 @@ export class Solution extends AbstractSolution {
             return 0
         }
 
-        let differences = new Arr(numberArr.slideWindow(2).map(([prev, next]) => next - prev))
+        let differences = numberArr.slideWindow(2).map(arr => arr.get(1) - arr.get(0))
 
         return numberArr.last() + this.findFollowing(differences)
     }
@@ -44,7 +44,7 @@ export class Solution extends AbstractSolution {
             return 0
         }
 
-        let differences = new Arr(numberArr.slideWindow(2).map(([prev, next]) => next - prev))
+        let differences = numberArr.slideWindow(2).map(arr => arr.get(1) - arr.get(0))
 
         return numberArr.first() - this.findPrevious(differences)
     }
