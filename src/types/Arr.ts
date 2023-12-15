@@ -243,6 +243,13 @@ export class Arr<T> {
     dropFirst(n: number) {
         return this.filter((v, i) => i >= n)
     }
+
+    remove(s: T) {
+        const index = this.elements.indexOf(s, 0);
+        if (index > -1) {
+            this.elements.splice(index, 1);
+        }
+    }
 }
 
 export class NumArr extends Arr<number> {
