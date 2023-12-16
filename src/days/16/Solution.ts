@@ -4,7 +4,7 @@ import {Vector2} from "../../types/Dict";
 import {Arr} from "../../types/Arr";
 import {ORDER_NATURAL} from "../../types/General";
 
-type Beam = {
+export type Beam = {
     index: Vector2,
     direction: Vector2
 }
@@ -21,13 +21,13 @@ export class Solution extends AbstractSolution {
     }
 
     getSecondExampleSolution(): string {
-        return "145";
+        return "51";
     }
 
     solveFirst(input: Str): string {
         let fields = this.parseField(input)
         let firstBeam: Beam = {index: [-1, 0], direction: [1, 0]}
-        return this.getEnergizedFields(fields, firstBeam);
+        return this.getEnergizedFields(fields, firstBeam).toString();
     }
 
     private parseField(input: Str) {
@@ -51,7 +51,7 @@ export class Solution extends AbstractSolution {
             .toString()
     }
 
-    private getEnergizedFields(fields: string[][], firstBeam: Beam) {
+    private getEnergizedFields(fields: string[][], firstBeam: Beam): number {
         let fieldHeight = fields.length
 
         let fieldWidth = fields[0].length
@@ -76,10 +76,7 @@ export class Solution extends AbstractSolution {
             newBeams = tempNewBeams
         }
 
-        return new Set([...allBeams.values()]
-            .map(beam => beam.split("_")[0]))
-            .size
-            .toString()
+        return new Set([...allBeams.values()].map(beam => beam.split("_")[0])).size
     }
 
     beamToString(beam: Beam): string {
@@ -106,7 +103,7 @@ export class Solution extends AbstractSolution {
             }
         }
 
-        if (field === "\\") {
+        if (field === '\\') {
             if (this.dirEquals(direction, UP)) {
                 return [{index: nextIndex, direction: LEFT}]
             }
