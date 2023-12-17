@@ -13,7 +13,8 @@ export function heapifyUp<T>(
     let i = (j - 1) / 2 >> 0;
     while (j > 0 && compare(items[i], items[j]) < 0) {
         [items[i], items[j]] = [items[j], items[i]];
-        j = i, i = (j - 1) / 2 >> 0;
+        j = i;
+        i = (j - 1) / 2 >> 0;
     }
 }
 
@@ -33,7 +34,8 @@ export function heapifyDown<T>(
     let j, k: number;
     n = n ?? items.length;
     while (true) {
-        j = 2 * i + 1, k = i;
+        j = 2 * i + 1;
+        k = i;
         if (j < n && compare(items[j], items[k]) > 0) k = j;
 
         j++;
@@ -65,7 +67,7 @@ export class Heap<T> {
         private compare: (a: T, b: T) => number,
         ...items: Array<T>
     ) {
-        this.items = new Array();
+        this.items = [];
         items.forEach(item => this.insert(item));
     }
 
