@@ -1,5 +1,10 @@
 import {Vector2} from "./Dict";
 
+
+export function mod(n: number, m: number) {
+    return ((n % m) + m) % m
+}
+
 export function gcd(a: number, b: number): number {
     return !b ? a : gcd(b, a % b);
 }
