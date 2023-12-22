@@ -15,14 +15,14 @@ export class Solution extends AbstractSolution {
         return this.getMatchesPerCard(input)
             .map(duplicates => Math.floor(Math.pow(2, duplicates - 1)))
             .toNumArr()
-            .add()
+            .sum()
             .toString()
     }
 
     solveSecond(input: Str): string {
         let matchesPerCard = this.getMatchesPerCard(input)
         return this.addUpCardNumbers(matchesPerCard.toNumArr())
-            .add()
+            .sum()
             .toString()
     }
 

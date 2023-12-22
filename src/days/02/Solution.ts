@@ -17,7 +17,7 @@ export class Solution extends AbstractSolution {
             .getIndicesWith(game => this.gameIsPossible(game))
             .map(index => index + 1)
             .toNumArr()
-            .add()
+            .sum()
             .toString()
     }
 
@@ -25,7 +25,7 @@ export class Solution extends AbstractSolution {
         return this.parseGame(input)
             .map(game => this.getGamePower(game))
             .toNumArr()
-            .add()
+            .sum()
             .toString()
     }
 

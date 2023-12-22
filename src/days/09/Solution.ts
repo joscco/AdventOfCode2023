@@ -17,7 +17,7 @@ export class Solution extends AbstractSolution {
         return input.parseRows()
             .map(row => this.findFollowing(row.split(" ").map(num => num.parseInt())))
             .toNumArr()
-            .add()
+            .sum()
             .toString()
     }
 
@@ -25,7 +25,7 @@ export class Solution extends AbstractSolution {
         return input.parseRows()
             .map(row => this.findPrevious(row.split(" ").map(num => num.parseInt())))
             .toNumArr()
-            .add()
+            .sum()
             .toString()
     }
 

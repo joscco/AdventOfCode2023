@@ -23,7 +23,7 @@ export class Solution extends AbstractSolution {
             .filter(numberEntry => this.hasNeighborIndex(numberEntry, specialCharIndices.map(v => v[1])))
             .map(entry => entry[0])
             .toNumArr()
-            .add()
+            .sum()
             .toString();
     }
 
@@ -42,7 +42,7 @@ export class Solution extends AbstractSolution {
             .filter(list => list.length() == 2)
             .map(arr => arr.get(0) * arr.get(1))
             .toNumArr()
-            .add()
+            .sum()
             .toString();
     }
 

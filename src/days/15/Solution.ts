@@ -18,7 +18,7 @@ export class Solution extends AbstractSolution {
         return input.split(",")
             .map(str => this.hash(str))
             .toNumArr()
-            .add()
+            .sum()
             .toString()
     }
 

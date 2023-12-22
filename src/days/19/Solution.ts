@@ -51,7 +51,7 @@ export class Solution extends AbstractSolution {
 
         for (let item of items) {
             if (this.isAccepted(workflows, item, "in")) {
-                result += new NumArr(item).add()
+                result += new NumArr(item).sum()
             }
         }
 

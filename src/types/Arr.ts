@@ -258,7 +258,7 @@ export class NumArr extends Arr<number> {
         super(elements ?? []);
     }
 
-    add(): number {
+    sum(): number {
         return this.elements.reduce((a, b) => a + b, 0)
     }
 

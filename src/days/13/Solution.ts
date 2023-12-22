@@ -18,7 +18,7 @@ export class Solution extends AbstractSolution {
             .groupSplit("")
             .map(group => this.findReflectionValue(group))
             .toNumArr()
-            .add()
+            .sum()
             .toString()
     }
 
@@ -28,7 +28,7 @@ export class Solution extends AbstractSolution {
             .groupSplit("")
             .map(group => this.findPseudoReflectionValue(group))
             .toNumArr()
-            .add()
+            .sum()
             .toString()
     }
 

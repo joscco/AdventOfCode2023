@@ -32,7 +32,7 @@ export class Solution extends AbstractSolution {
             .map(matches => new Arr(matches?.map(val => new Str(val))))
             .map(matches => Str.concat(matches.first(), matches.last()).parseInt())
             .toNumArr()
-            .add()
+            .sum()
             .toString();
     }
 
@@ -43,7 +43,7 @@ export class Solution extends AbstractSolution {
             .map(matches => matches.map(match => this.replaceDigit(match.toString())))
             .map(matches => Str.concat(matches.first(), matches.last()).parseInt())
             .toNumArr()
-            .add()
+            .sum()
             .toString();
     }
 

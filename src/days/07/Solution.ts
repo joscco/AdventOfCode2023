@@ -31,7 +31,7 @@ export class Solution extends AbstractSolution {
             .sort((a, b) => this.compareHands(a[0], b[0], valueList, includeJokers))
             .map(([_, rank], index) => rank * (index + 1))
             .toNumArr()
-            .add()
+            .sum()
             .toString();
     }
 

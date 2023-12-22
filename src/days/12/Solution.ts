@@ -22,7 +22,7 @@ export class Solution extends AbstractSolution {
             })
             .map(arr => this.countPossibilities(arr[0], arr[1].toNumArr()))
             .toNumArr()
-            .add()
+            .sum()
             .toString()
     }
 
@@ -34,7 +34,7 @@ export class Solution extends AbstractSolution {
             })
             .map(arr => this.countPossibilities(arr[0], arr[1].toNumArr()))
             .toNumArr()
-            .add()
+            .sum()
             .toString()
 
         // 4573476551615 too high
