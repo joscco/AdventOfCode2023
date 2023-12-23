@@ -55,6 +55,14 @@ export class Dict<K, V> {
         }
         return entries
     }
+
+    keys(): Array<K> {
+        let entries: K[] = []
+        for (let [id, [key, value]] of this.map.entries()) {
+            entries.push(key)
+        }
+        return entries
+    }
 }
 
 export type Vector2 = [number, number]
