@@ -36,6 +36,10 @@ export class Set<K> {
         }
         return entries
     }
+
+    copy() {
+        return new Set<K>((k: K) => this.toIdString(k), this.values())
+    }
 }
 
 export class Vector2Set extends Set<Vector2> {

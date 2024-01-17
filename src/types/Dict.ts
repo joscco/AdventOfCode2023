@@ -63,6 +63,10 @@ export class Dict<K, V> {
         }
         return entries
     }
+
+    copy() {
+        return new Dict<K, V>((key: K) => this.toIdString(key), this)
+    }
 }
 
 export type Vector2 = [number, number]
